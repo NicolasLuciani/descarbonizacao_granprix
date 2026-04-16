@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Zero - Recomendações IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .nav-link { transition: all 0.3s ease; }
+        .nav-link:hover { background-color: #d1d5db; }
+        .nav-active { background-color: #facc15; color: #1a1a1a; pointer-events: none; }
+        
+        .ai-container {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+        }
+        .blinking-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans">
+    <header class="bg-[#008542] text-white p-4 flex justify-between items-center shadow-lg">
+        <div class="flex items-center gap-4">
+            <i class="fas fa-bars text-xl cursor-pointer hover:text-yellow-400"></i>
+            <h1 class="text-xl font-bold uppercase">Insights de Inteligência Artificial</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <i class="fas fa-user-circle text-3xl text-yellow-400"></i>
+            <span class="font-bold text-yellow-400">BR</span>
+        </div>
+    </header>
+
+    <nav class="bg-gray-200 p-2 flex flex-wrap gap-2 justify-center border-b shadow-sm">
+        <a href="index.html" class="nav-link px-4 py-2 rounded font-bold text-sm text-gray-700">VISÃO GERAL</a>
+        <a href="investimentos.html" class="nav-link px-4 py-2 rounded font-bold text-sm text-gray-700">INVESTIMENTOS</a>
+        <a href="custo.html" class="nav-link px-4 py-2 rounded font-bold text-sm text-gray-700">CUSTO & EFICIÊNCIA</a>
+        <a href="impacto.html" class="nav-link px-4 py-2 rounded font-bold text-sm text-gray-700">IMPACTO AMBIENTAL</a>
+        <a href="simulacao.html" class="nav-link px-4 py-2 rounded font-bold text-sm text-gray-700">SIMULAÇÃO</a>
+        <a href="ia.html" class="nav-link nav-active px-4 py-2 rounded font-bold text-sm">RECOMENDAÇÃO (IA)</a>
+    </nav>
+
+    <main class="p-6 max-w-4xl mx-auto">
+        <div class="ai-container p-8 rounded-2xl text-white border border-indigo-400">
+            <div class="flex items-center gap-4 mb-6 border-b border-indigo-400/30 pb-4">
+                <div class="p-4 bg-indigo-500/30 rounded-full animate-pulse shadow-lg">
+                    <i class="fas fa-robot text-3xl text-indigo-200"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold tracking-wider">Motor Analítico Ativado</h2>
+                    <p class="text-indigo-200 text-sm">Gerando recomendações baseadas no portfólio atual...</p>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 p-6 rounded-lg backdrop-blur-sm border border-white/10">
+                <p class="text-yellow-400 font-bold text-xs uppercase mb-2 tracking-widest"><i class="fas fa-bolt"></i> Output Estratégico</p>
+                <p id="ai-text" class="text-lg font-light leading-relaxed blinking-cursor min-h-[80px]"></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const text = "Com base na análise atualizada, o Monitoramento de Metano e a Eficiência Operacional são as tecnologias com melhor custo-benefício unitário. O CCUS é essencial para grandes volumes, mas requer otimização. Recomenda-se realocar 5% do Capex para Hidrogênio Verde.";
+        const displayElement = document.getElementById('ai-text');
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                displayElement.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 30); // Velocidade da digitação
+            } else {
+                displayElement.classList.remove('blinking-cursor');
+            }
+        }
+
+        // Inicia após 1 segundo simulando processamento
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>

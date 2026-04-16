@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Zero - Visão Geral</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800&display=swap');
+        
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f3f4f6; }
+        
+        /* Header conforme imagem 1 */
+        .header-main {
+            background-color: #0b6b3a;
+            color: white;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Nav conforme imagem 1 */
+        .nav-tabs {
+            background-color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+            gap: 8px;
+            border-bottom: 1px solid #d1d5db;
+        }
+
+        .tab-item {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .tab-active {
+            background-color: #facc15 !important;
+            color: #000 !important;
+        }
+
+        .card-metric {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="header-main">
+        <div class="flex items-center gap-4">
+            <i class="fas fa-bars text-xl cursor-pointer"></i>
+            <h1 class="text-xl font-bold uppercase tracking-tight">PORTFÓLIO DE DESCARBONIZAÇÃO NET ZERO</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <i class="fas fa-user-circle text-4xl text-yellow-400"></i>
+            <span class="font-bold text-lg">BR</span>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <a href="#" class="tab-item tab-active">Visão Geral</a>
+        <a href="investimentos.html" class="tab-item">Investimentos</a>
+        <a href="custo.html" class="tab-item">Custo & Eficiência</a>
+        <a href="impacto.html" class="tab-item">Impacto Ambiental</a>
+        <a href="simulacao.html" class="tab-item">Simulação</a>
+        <a href="ia.html" class="tab-item">Recomendação (IA)</a>
+    </nav>
+
+    <main class="p-6 max-w-7xl mx-auto w-full space-y-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="card-metric border-t-4 border-green-700">
+                <p class="text-xs font-bold text-gray-500 uppercase">Investimento Total</p>
+                <h2 class="text-2xl font-black text-gray-800">R$ <span class="counter" data-target="107">0</span> Bi</h2>
+            </div>
+            <div class="card-metric border-t-4 border-green-500">
+                <p class="text-xs font-bold text-gray-500 uppercase">Redução Estimada</p>
+                <h2 class="text-2xl font-black text-green-700"><span class="counter" data-target="20.6">0</span>%</h2>
+            </div>
+            <div class="card-metric border-t-4 border-yellow-500">
+                <p class="text-xs font-bold text-gray-500 uppercase">Status Meta 2050</p>
+                <h2 class="text-2xl font-black text-yellow-600">EM ROTA</h2>
+            </div>
+            <div class="card-metric border-t-4 border-blue-500">
+                <p class="text-xs font-bold text-gray-500 uppercase">Intensidade de Carbono</p>
+                <h2 class="text-2xl font-black text-gray-800">1.92</h2>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow border">
+            <h3 class="font-bold text-gray-700 mb-4 uppercase text-sm border-b pb-2">
+                Projeção de Emissões vs. Meta Net Zero (Até 2050)
+            </h3>
+            <div class="h-[350px] w-full">
+                <canvas id="areaChart"></canvas>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Lógica do Gráfico de Área (Imagem 3)
+        const ctx = document.getElementById('areaChart').getContext('2d');
+        
+        // Gradiente para o preenchimento verde
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(11, 107, 58, 0.4)');
+        gradient.addColorStop(1, 'rgba(11, 107, 58, 0.0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2024', '2026', '2028', '2030', '2032', '2036', '2040', '2046', '2050'],
+                datasets: [
+                    {
+                        label: 'Projeção Atual',
+                        data: [1200, 1380, 1500, 1450, 1200, 800, 500, 100, 0],
+                        borderColor: '#0b6b3a',
+                        backgroundColor: gradient,
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 3,
+                        pointRadius: 0 // Estilo limpo da imagem 3
+                    },
+                    {
+                        label: 'Meta Net Zero',
+                        data: [1200, 1400, 1520, 1450, 1350, 1100, 850, 300, 0],
+                        borderColor: '#facc15',
+                        borderDash: [5, 5],
+                        fill: false,
+                        tension: 0.4,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Emissão Base (Sem Ação)',
+                        data: [1200, 1450, 1550, 1580, 1550, 1520, 1500, 1450, 1400],
+                        borderColor: '#94a3b8',
+                        borderDash: [2, 2],
+                        fill: false,
+                        tension: 0.4,
+                        borderWidth: 1.5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', align: 'start' }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        grid: { color: '#f3f4f6' },
+                        title: { display: true, text: 'CO2e Emissões', font: { weight: 'bold' } }
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Animador de números nos cards
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const updateCount = () => {
+                const count = +counter.innerText.replace(',', '.');
+                const inc = target / 50;
+                if (count < target) {
+                    counter.innerText = (count + inc).toFixed(target % 1 === 0 ? 0 : 1).replace('.', ',');
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target.toString().replace('.', ',');
+                }
+            };
+            updateCount();
+        });
+    </script>
+</body>
+</html>

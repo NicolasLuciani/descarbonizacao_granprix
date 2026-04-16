@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Zero - Custo e Eficiência</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800&display=swap');
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f3f4f6; 
+            overflow-x: hidden; 
+        }
+
+        /* --- Header Verde --- */
+        .header-main {
+            background-color: #0b6b3a;
+            color: white;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* --- Barra de Navegação Cinza (Abas) --- */
+        .nav-tabs {
+            background-color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+            gap: 8px;
+            border-bottom: 1px solid #d1d5db;
+        }
+
+        .tab-item {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .tab-item:hover { 
+            background-color: #d1d5db; 
+        }
+
+        /* Destaque Amarelo - Corrigido para Custo & Eficiência */
+        .tab-active {
+            background-color: #facc15 !important;
+            color: #000 !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* --- Estrutura de Cards --- */
+        .card { 
+            background: white; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+            border: 1px solid #e5e7eb; 
+            padding: 20px; 
+        }
+
+        /* Trava para os Gráficos */
+        .chart-box {
+            position: relative;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="header-main">
+        <div class="flex items-center gap-4">
+            <i class="fas fa-bars text-xl cursor-pointer hover:text-yellow-400"></i>
+            <h1 class="text-xl font-bold uppercase tracking-tight">Portfólio de Descarbonização Net Zero</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <i class="fas fa-user-circle text-4xl text-yellow-400"></i>
+            <span class="font-bold text-lg">BR</span>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <a href="index.html" class="tab-item">Visão Geral</a>
+        <a href="investimentos.html" class="tab-item">Investimentos</a>
+        <a href="custo.html" class="tab-item tab-active">Custo & Eficiência</a>
+        <a href="impacto.html" class="tab-item">Impacto Ambiental</a>
+        <a href="simulacao.html" class="tab-item">Simulação</a>
+        <a href="ia.html" class="tab-item">Recomendação (IA)</a>
+    </nav>
+
+    <main class="p-6 max-w-[1440px] mx-auto w-full flex-1 flex flex-col gap-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="card text-center">
+                <p class="text-xs font-extrabold text-gray-500 uppercase mb-1">Custo Médio (R$ bi)</p>
+                <h2 class="text-4xl font-bold text-[#0b6b3a]">13.37</h2>
+            </div>
+            <div class="card text-center">
+                <p class="text-xs font-extrabold text-gray-500 uppercase mb-1">Eficiência Média</p>
+                <h2 class="text-4xl font-bold text-[#0b6b3a]">1.92</h2>
+            </div>
+            <div class="card text-center">
+                <p class="text-xs font-extrabold text-gray-500 uppercase mb-1">Redução Média</p>
+                <h2 class="text-4xl font-bold text-[#0b6b3a]">20.6%</h2>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-12 gap-6">
+            
+            <div class="card col-span-12 md:col-span-2 flex flex-col h-[450px]">
+                <h3 class="font-bold text-sm mb-4 border-b pb-2 uppercase text-gray-700">Filtros</h3>
+                <div class="space-y-3">
+                    <label class="flex items-center gap-3 text-xs font-bold text-gray-600 uppercase cursor-pointer hover:text-green-700">
+                        <input type="checkbox" checked class="w-4 h-4 accent-green-700"> CCUS
+                    </label>
+                    <label class="flex items-center gap-3 text-xs font-bold text-gray-600 uppercase cursor-pointer hover:text-green-700">
+                        <input type="checkbox" class="w-4 h-4 accent-green-700"> Eficiência Op.
+                    </label>
+                    <label class="flex items-center gap-3 text-xs font-bold text-gray-600 uppercase cursor-pointer hover:text-green-700">
+                        <input type="checkbox" class="w-4 h-4 accent-green-700"> Renováveis
+                    </label>
+                </div>
+            </div>
+
+            <div class="card col-span-12 md:col-span-6 h-[450px]">
+                <h3 class="font-bold text-sm text-gray-800 mb-4 uppercase">Relação Custo vs. Redução de CO₂</h3>
+                <div class="chart-box h-[360px]">
+                    <canvas id="bubbleChart"></canvas>
+                </div>
+            </div>
+
+            <div class="col-span-12 md:col-span-4 flex flex-col gap-6">
+                <div class="card h-[213px]">
+                    <h3 class="font-bold text-xs text-center uppercase mb-3">Eficiência (Score IA)</h3>
+                    <div class="chart-box h-[140px]">
+                        <canvas id="barChart1"></canvas>
+                    </div>
+                </div>
+                <div class="card h-[213px]">
+                    <h3 class="font-bold text-xs text-center uppercase mb-3">Custo Total (R$ bi)</h3>
+                    <div class="chart-box h-[140px]">
+                        <canvas id="barChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Configurações Globais do Chart.js para evitar crescimento infinito
+        const globalOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 800 },
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { 
+                    beginAtZero: true,
+                    ticks: { precision: 0 }
+                }
+            }
+        };
+
+        // 1. Bubble Chart
+        new Chart(document.getElementById('bubbleChart'), {
+            type: 'bubble',
+            data: {
+                datasets: [
+                    { label: 'CCUS', data: [{ x: 45, y: 25, r: 18 }], backgroundColor: '#11783B' },
+                    { label: 'Renov', data: [{ x: 20, y: 22, r: 12 }], backgroundColor: '#F2C200' },
+                    { label: 'Offshore', data: [{ x: 30, y: 15, r: 14 }], backgroundColor: '#2B3D8A' }
+                ]
+            },
+            options: {
+                ...globalOptions,
+                scales: {
+                    x: { title: { display: true, text: 'Capex (R$ bi)', font: { weight: 'bold' } } },
+                    y: { title: { display: true, text: 'Redução CO₂ (%)', font: { weight: 'bold' } } }
+                }
+            }
+        });
+
+        // 2. Bar Chart 1 (Eficiência)
+        new Chart(document.getElementById('barChart1'), {
+            type: 'bar',
+            data: {
+                labels: ['Metano', 'Efic Op', 'Renov', 'CCUS'],
+                datasets: [{
+                    data: [3.0, 1.6, 1.1, 0.55],
+                    backgroundColor: ['#1C6E36', '#DE7A36', '#F2C200', '#11783B']
+                }]
+            },
+            options: globalOptions
+        });
+
+        // 3. Bar Chart 2 (Custo)
+        new Chart(document.getElementById('barChart2'), {
+            type: 'bar',
+            data: {
+                labels: ['CCUS', 'H2', 'Offsh', 'Renov'],
+                datasets: [{
+                    data: [45, 35, 30, 20],
+                    backgroundColor: ['#11783B', '#0F7343', '#2B3D8A', '#F2C200']
+                }]
+            },
+            options: globalOptions
+        });
+    </script>
+</body>
+</html>

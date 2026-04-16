@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Zero - Investimentos</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800&display=swap');
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f3f4f6; 
+        }
+
+        /* --- Estilo Padrão Header --- */
+        .header-main {
+            background-color: #0b6b3a;
+            color: white;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* --- Navegação --- */
+        .nav-tabs {
+            background-color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+            gap: 8px;
+            border-bottom: 1px solid #d1d5db;
+        }
+
+        .tab-item {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .tab-active {
+            background-color: #facc15 !important;
+            color: #000 !important;
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="header-main">
+        <div class="flex items-center gap-4">
+            <i class="fas fa-bars text-xl cursor-pointer hover:text-yellow-400"></i>
+            <h1 class="text-xl font-bold uppercase tracking-tight">Detalhamento do Capex de Descarbonização</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <i class="fas fa-user-circle text-4xl text-yellow-400"></i>
+            <span class="font-bold text-lg text-white">BR</span>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <a href="index.html" class="tab-item">Visão Geral</a>
+        <a href="investimentos.html" class="tab-item tab-active">Investimentos</a>
+        <a href="custo.html" class="tab-item">Custo & Eficiência</a>
+        <a href="impacto.html" class="tab-item">Impacto Ambiental</a>
+        <a href="simulacao.html" class="tab-item">Simulação</a>
+        <a href="ia.html" class="tab-item">Recomendação (IA)</a>
+    </nav>
+
+    <main class="p-6 max-w-7xl mx-auto w-full space-y-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="card border-l-8 border-green-600">
+                <p class="text-xs font-black text-gray-500 uppercase">Investimento Total 2024-2030</p>
+                <h2 class="text-3xl font-black text-gray-800">R$ 160,5 bi</h2>
+            </div>
+            <div class="card border-l-8 border-yellow-500">
+                <p class="text-xs font-black text-gray-500 uppercase">Projetos em Execução</p>
+                <h2 class="text-3xl font-black text-gray-800">42 Ativos</h2>
+            </div>
+            <div class="card border-l-8 border-blue-500">
+                <p class="text-xs font-black text-gray-500 uppercase">ROI Ambiental Estimado</p>
+                <h2 class="text-3xl font-black text-gray-800">18.4%</h2>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            <div class="card col-span-12 md:col-span-8 flex flex-col items-center">
+                <h3 class="w-full font-bold text-gray-700 mb-6 border-b pb-2 uppercase text-sm">Distribuição do Capex por Tecnologia</h3>
+                <div class="w-full h-[350px]">
+                    <canvas id="capexChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card col-span-12 md:col-span-4 flex flex-col">
+                <h3 class="font-bold text-gray-700 mb-4 border-b pb-2 uppercase text-sm">Controle de Portfólio</h3>
+                <div class="space-y-3 flex-1">
+                    <label class="flex items-center gap-3 cursor-pointer p-3 hover:bg-gray-50 rounded-lg transition-colors border border-transparent hover:border-gray-200">
+                        <input type="checkbox" class="tech-filter w-5 h-5 accent-green-700" value="CCUS" checked>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-gray-800">CCUS</span>
+                            <span class="text-[10px] text-gray-500">Captura e Armazenamento</span>
+                        </div>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer p-3 hover:bg-gray-50 rounded-lg transition-colors border border-transparent hover:border-gray-200">
+                        <input type="checkbox" class="tech-filter w-5 h-5 accent-green-700" value="Hidrogênio Verde" checked>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-gray-800">Hidrogênio Verde</span>
+                            <span class="text-[10px] text-gray-500">Eletrólise e Amônia</span>
+                        </div>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer p-3 hover:bg-gray-50 rounded-lg transition-colors border border-transparent hover:border-gray-200">
+                        <input type="checkbox" class="tech-filter w-5 h-5 accent-green-700" value="Eficiência Operacional">
+                        <div class="flex flex-col">
+                            <span class="font-bold text-gray-800">Eficiência Operacional</span>
+                            <span class="text-[10px] text-gray-500">Otimização de Processos</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="mt-6 p-4 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300">
+                    <p class="text-[10px] font-black text-gray-400 uppercase mb-2">Relatório Ativo</p>
+                    <p class="text-xs font-bold text-gray-600 leading-tight" id="filter-status">
+                        Mostrando dados de: CCUS, Hidrogênio Verde
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 1. Inicialização do Gráfico Chart.js
+        const ctx = document.getElementById('capexChart').getContext('2d');
+        const capexChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['CCUS', 'Hidrogênio Verde', 'Eficiência Operacional', 'Renováveis', 'Outros'],
+                datasets: [{
+                    data: [35, 25, 20, 15, 5],
+                    backgroundColor: ['#0b6b3a', '#facc15', '#3b82f6', '#a855f7', '#ef4444'],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { font: { weight: 'bold', size: 12 } }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+
+        // 2. Lógica dos Filtros (Correção de sintaxe aplicada)
+        const checkboxes = document.querySelectorAll('.tech-filter');
+        const statusDiv = document.getElementById('filter-status');
+
+        checkboxes.forEach(box => {
+            box.addEventListener('change', () => {
+                const selected = Array.from(checkboxes)
+                    .filter(i => i.checked)
+                    .map(i => i.value);
+                
+                // Correção: Usando as crases (backticks) para Template Strings
+                statusDiv.innerText = selected.length > 0 
+                    ? `Mostrando dados de: ${selected.join(', ')}` 
+                    : 'Nenhum processo selecionado';
+
+                // Efeito visual simples no gráfico (apenas para demonstração)
+                capexChart.options.plugins.legend.display = selected.length > 0;
+                capexChart.update();
+            });
+        });
+    </script>
+</body>
+</html>

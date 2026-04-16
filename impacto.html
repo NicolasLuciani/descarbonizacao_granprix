@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Zero - Impacto Ambiental</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800&display=swap');
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f3f4f6; 
+        }
+
+        /* --- Header Padrão --- */
+        .header-main {
+            background-color: #0b6b3a;
+            color: white;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* --- Navegação --- */
+        .nav-tabs {
+            background-color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+            gap: 8px;
+            border-bottom: 1px solid #d1d5db;
+        }
+
+        .tab-item {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .tab-active {
+            background-color: #facc15 !important;
+            color: #000 !important;
+        }
+
+        /* --- Estilo das Barras --- */
+        .progress-bar { 
+            transition: width 2s cubic-bezier(0.17, 0.67, 0.83, 0.67); 
+            width: 0; 
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="header-main">
+        <div class="flex items-center gap-4">
+            <i class="fas fa-bars text-xl cursor-pointer hover:text-yellow-400"></i>
+            <h1 class="text-xl font-bold uppercase tracking-tight">Impacto Ambiental Net Zero</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <i class="fas fa-user-circle text-4xl text-yellow-400"></i>
+            <span class="font-bold text-lg text-white">BR</span>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <a href="index.html" class="tab-item">Visão Geral</a>
+        <a href="investimentos.html" class="tab-item">Investimentos</a>
+        <a href="custo.html" class="tab-item">Custo & Eficiência</a>
+        <a href="impacto.html" class="tab-item tab-active">Impacto Ambiental</a>
+        <a href="simulacao.html" class="tab-item">Simulação</a>
+        <a href="ia.html" class="tab-item">Recomendação (IA)</a>
+    </nav>
+
+    <main class="p-6 max-w-6xl mx-auto w-full space-y-6 flex-1">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="card bg-green-900 text-white flex items-center gap-4">
+                <div class="bg-green-700 p-4 rounded-full">
+                    <i class="fas fa-leaf text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-bold uppercase opacity-80">CO2 Evitado</p>
+                    <h2 class="text-3xl font-black">1.2M <span class="text-sm">ton</span></h2>
+                </div>
+            </div>
+            <div class="card flex items-center gap-4 border-l-8 border-yellow-400">
+                <div class="bg-yellow-100 p-4 rounded-full">
+                    <i class="fas fa-certificate text-2xl text-yellow-600"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-bold text-gray-500 uppercase">Créditos Gerados</p>
+                    <h2 class="text-3xl font-black text-gray-800">850k</h2>
+                </div>
+            </div>
+            <div class="card flex items-center gap-4 border-l-8 border-blue-500">
+                <div class="bg-blue-100 p-4 rounded-full">
+                    <i class="fas fa-tint text-2xl text-blue-600"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-bold text-gray-500 uppercase">Água Reutilizada</p>
+                    <h2 class="text-3xl font-black text-gray-800">14%</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="card">
+                <h3 class="font-bold mb-6 text-gray-800 uppercase text-sm border-b pb-2 flex items-center gap-2">
+                    <i class="fas fa-chart-bar text-green-700"></i> Eficácia por Tecnologia
+                </h3>
+                
+                <div class="space-y-8">
+                    <div>
+                        <div class="flex justify-between text-xs font-black mb-2 text-gray-600">
+                            <span>1. CCUS (PROJETOS PILOTO)</span><span>25%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3 shadow-inner">
+                            <div class="bg-[#0b6b3a] h-3 rounded-full progress-bar shadow-lg shadow-green-900/20" data-width="25%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-black mb-2 text-gray-600">
+                            <span>2. ENERGIAS RENOVÁVEIS</span><span>22%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3 shadow-inner">
+                            <div class="bg-green-600 h-3 rounded-full progress-bar shadow-lg shadow-green-700/20" data-width="22%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-black mb-2 text-gray-600">
+                            <span>3. ELETRIFICAÇÃO OFFSHORE</span><span>15%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3 shadow-inner">
+                            <div class="bg-green-400 h-3 rounded-full progress-bar shadow-lg shadow-green-400/20" data-width="15%"></div>
+                        </div>
+                    </div>
+
+                    <p class="text-[10px] text-gray-400 italic mt-4">
+                        * Percentual referente à contribuição total no portfólio de descarbonização 2024.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-bold mb-6 text-gray-800 uppercase text-sm border-b pb-2 flex items-center gap-2">
+                    <i class="fas fa-chart-line text-green-700"></i> Trajetória de Emissões (Mton CO2e)
+                </h3>
+                <div class="h-64">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Inicialização do Gráfico de Tendência
+        const ctx = document.getElementById('impactChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Emissões Totais',
+                    data: [1.8, 1.7, 1.55, 1.4, 1.2],
+                    borderColor: '#0b6b3a',
+                    backgroundColor: 'rgba(11, 107, 58, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#facc15'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: false, ticks: { font: { size: 10 } } },
+                    x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                }
+            }
+        });
+
+        // Dispara a animação das barras
+        window.addEventListener('load', () => {
+            const bars = document.querySelectorAll('.progress-bar');
+            setTimeout(() => {
+                bars.forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-width');
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
